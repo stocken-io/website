@@ -264,31 +264,48 @@
   .token-info-value.blue { color: var(--blue-bright); }
   .token-info-value.gold { color: var(--gold); }
 
-  .discount-table {
-    width: 100%; border-collapse: collapse; margin-top: 48px;
-    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  /* ── PAYMENT FLOW ── */
+  .payment-flow {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 24px; margin-top: 60px;
   }
 
-  .discount-table th {
-    background: var(--surface); padding: 16px 24px; text-align: left;
-    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1.5px;
-    color: var(--dim); text-transform: uppercase; border-bottom: 1px solid var(--border);
+  .payment-node {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px 36px; text-align: center; min-width: 140px;
   }
 
-  .discount-table td {
-    padding: 18px 24px; font-size: 15px; color: var(--text); border-bottom: 1px solid var(--border);
+  .payment-node-icon { font-size: 36px; margin-bottom: 12px; }
+  .payment-node-label { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+  .payment-node-sub { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+  .payment-middle { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+  .payment-tokens { display: flex; align-items: center; gap: 12px; }
+
+  .payment-token {
+    border-radius: 12px; padding: 14px 20px; text-align: center;
+    border: 1px solid var(--border); min-width: 110px;
   }
 
-  .discount-table tr:last-child td { border-bottom: none; }
-  .discount-table tr:hover td { background: rgba(59,130,246,0.03); }
-  .discount-table .plan-name { font-weight: 600; }
-  .discount-table .fiat { color: var(--muted); font-size: 14px; }
-  .discount-table .stkn { font-family: 'DM Mono', monospace; color: var(--blue-bright); font-size: 14px; }
+  .stkn-token { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2); }
+  .fiat-token { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.2); }
 
-  .discount-badge {
-    display: inline-block; background: rgba(16,185,129,0.1); color: #10b981;
-    border: 1px solid rgba(16,185,129,0.2); border-radius: 6px; padding: 3px 10px;
-    font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
+  .payment-token-label { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+  .stkn-token .payment-token-label { color: var(--gold); }
+  .fiat-token .payment-token-label { color: var(--blue-bright); }
+
+  .payment-token-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  .payment-plus { font-size: 20px; color: var(--dim); font-weight: 300; }
+
+  .payment-arrow { display: flex; align-items: center; gap: 4px; }
+  .payment-arrow-line { width: 60px; height: 1px; background: var(--border); }
+  .payment-arrow-tip { font-size: 18px; color: var(--dim); }
+
+  .payment-note {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--dim); letter-spacing: 1px; text-transform: uppercase;
   }
 
   .roadmap { position: relative; margin-top: 60px; padding-left: 40px; }
@@ -420,7 +437,7 @@
     <li><a href="#utility">Utility</a></li>
     <li><a href="#tokenomics">Tokenomics</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="https://docs.stocken.io" target="_blank">Docs</a></li>
+    <li><a href="https://docs.stocken.io" target="_blank">API Docs</a></li>
     <li><a href="./Stocken-STKN-Whitepaper.pdf" target="_blank" class="nav-cta">Whitepaper ↗</a></li>
   </ul>
 </nav>
@@ -489,7 +506,7 @@
     <div class="how-card">
       <div class="how-icon blue">💳</div>
       <div class="how-title">Pay with STKN</div>
-      <p class="how-desc">Use STKN to partially pay for platform subscriptions — up to 30% of the subscription cost can be covered with STKN, with the remaining paid in fiat.</p>
+      <p class="how-desc">Use STKN to pay for subscriptions across integrated platforms, with payment terms defined independently by each platform.</p>
     </div>
     <div class="how-card">
       <div class="how-icon gold">🎁</div>
@@ -591,52 +608,41 @@
 
 <!-- PAYMENT STRUCTURE -->
 <section id="pricing">
-  <div class="section-tag">Pay Less</div>
-  <h2 class="section-title">Subscription payments<br/>with STKN</h2>
-  <p class="section-desc">Use STKN to cover up to 30% of any integrated platform subscription. The following is an illustrative example.</p>
+  <div class="section-tag">Pay with STKN</div>
+  <h2 class="section-title">How payments work</h2>
+  <p class="section-desc">Use STKN to pay for subscriptions across integrated platforms, with payment terms defined independently by each platform.</p>
 
-  <table class="discount-table reveal">
-    <thead>
-      <tr>
-        <th>Plan</th>
-        <th>Fiat Price</th>
-        <th>Max STKN (30%)</th>
-        <th>Min Fiat (70%)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="plan-name">Basic</td>
-        <td class="fiat">Free</td>
-        <td class="stkn">—</td>
-        <td>—</td>
-      </tr>
-      <tr>
-        <td class="plan-name">Pro</td>
-        <td class="fiat">₹299 / month</td>
-        <td class="stkn">~₹90 worth of STKN</td>
-        <td><span class="discount-badge">₹209 / month</span></td>
-      </tr>
-      <tr>
-        <td class="plan-name">Elite</td>
-        <td class="fiat">₹599 / month</td>
-        <td class="stkn">~₹180 worth of STKN</td>
-        <td><span class="discount-badge">₹419 / month</span></td>
-      </tr>
-      <tr>
-        <td class="plan-name">Annual Pro</td>
-        <td class="fiat">₹2,999 / year</td>
-        <td class="stkn">~₹900 worth of STKN</td>
-        <td><span class="discount-badge">₹2,099 / year</span></td>
-      </tr>
-      <tr>
-        <td class="plan-name">Annual Elite</td>
-        <td class="fiat">₹5,999 / year</td>
-        <td class="stkn">~₹1,800 worth of STKN</td>
-        <td><span class="discount-badge">₹4,199 / year</span></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="payment-flow reveal">
+    <div class="payment-node">
+      <div class="payment-node-icon">👤</div>
+      <div class="payment-node-label">User</div>
+    </div>
+
+    <div class="payment-middle">
+      <div class="payment-tokens">
+        <div class="payment-token stkn-token">
+          <div class="payment-token-label">STKN</div>
+          <div class="payment-token-sub">token payment</div>
+        </div>
+        <div class="payment-plus">+</div>
+        <div class="payment-token fiat-token">
+          <div class="payment-token-label">Fiat</div>
+          <div class="payment-token-sub">traditional payment</div>
+        </div>
+      </div>
+      <div class="payment-arrow">
+        <div class="payment-arrow-line"></div>
+        <div class="payment-arrow-tip">→</div>
+      </div>
+      <div class="payment-note">terms set by each platform</div>
+    </div>
+
+    <div class="payment-node">
+      <div class="payment-node-icon">🏢</div>
+      <div class="payment-node-label">Platform</div>
+      <div class="payment-node-sub">subscription unlocked</div>
+    </div>
+  </div>
 </section>
 
 <!-- ROADMAP -->
