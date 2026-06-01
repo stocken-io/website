@@ -415,9 +415,48 @@
     section { padding: 60px 24px; }
     .how-grid { grid-template-columns: 1fr; }
     .token-layout { grid-template-columns: 1fr; }
+
+    /* Stats strip */
     .stats-strip { flex-wrap: wrap; margin: 0 16px; }
+    .stat-item { flex: 0 0 50%; border-right: none; border-bottom: 1px solid var(--border); }
+    .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
+    .stat-item:last-child { border-bottom: none; }
+    .stat-value { font-size: 24px; }
+
+    /* Payment flow */
+    .payment-flow { flex-direction: column; gap: 16px; }
+    .payment-middle { flex-direction: column; gap: 12px; width: 100%; }
+    .payment-tokens { flex-direction: column; align-items: center; gap: 8px; width: 100%; }
+    .payment-token { width: 100%; }
+    .payment-arrow { display: none; }
+    .payment-node { width: 100%; }
+
+    /* Roadmap */
+    .roadmap { padding-left: 24px; }
+    .roadmap-item::before { left: -20px; }
+    .roadmap::before { left: 4px; }
+
+    /* Footer */
     footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+    .footer-links { flex-wrap: wrap; gap: 16px; }
+
+    /* CTA */
     .cta-box { padding: 48px 28px; }
+    .cta-buttons { flex-direction: column; }
+    .cta-buttons a { width: 100%; justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 100px 24px 60px; }
+    .hero h1 { letter-spacing: -2px; }
+    .stat-item { flex: 0 0 100%; border-right: none; }
+    .stat-item:nth-child(odd) { border-right: none; }
+    .chain-badges { gap: 8px; }
+    .chain-badge { font-size: 11px; padding: 6px 12px; }
+    .how-card { padding: 32px 24px; }
+    .token-info-value { font-size: 17px; }
+    .roadmap-items { gap: 6px; }
+    .roadmap-tag { font-size: 12px; }
   }
 </style>
 </head>
